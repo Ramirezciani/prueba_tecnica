@@ -3,3 +3,6 @@ uvicorn[standard]
 sqlalchemy
 asyncpg
 python-dotenv
+pydantic[email]
+passlib[bcrypt]
+python-jose[cryptography]
