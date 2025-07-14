@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 import { Sidebar } from '../shared/sidebar/sidebar';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [Sidebar, CommonModule],  
+  imports: [Sidebar, CommonModule],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
@@ -24,5 +24,10 @@ export class DashboardComponent implements OnInit {
       next: (data) => this.projects = data,
       error: (err) => console.error('Error fetching projects:', err)
     });
+  }
+
+  getTasksByStatus(project: any, status: string): any[] {
+    if (!project.tasks) return [];
+    return project.tasks.filter((task: any) => task.status?.toLowerCase() === status.toLowerCase());
   }
 }
