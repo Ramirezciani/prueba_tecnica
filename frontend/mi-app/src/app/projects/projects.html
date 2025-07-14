@@ -1,0 +1,72 @@
+<div class="d-flex">
+    <app-sidebar></app-sidebar>
+
+    <main class="flex-grow-1 p-3">
+        <h2>Administrar Proyectos y Tareas</h2>
+
+        <!-- Formulario para Proyectos -->
+        <h3>Proyectos</h3>
+        <form [formGroup]="projectForm" (ngSubmit)="saveProject()">
+            <input formControlName="name" placeholder="Nombre del Proyecto" class="form-control mb-2" />
+            <textarea formControlName="description" placeholder="Descripción" class="form-control mb-2"></textarea>
+
+            <button class="btn btn-primary" type="submit">{{ editingProject ? 'Actualizar' : 'Crear' }}</button>
+            <button *ngIf="editingProject" type="button" class="btn btn-secondary ms-2"
+                (click)="cancelProjectEdit()">Cancelar</button>
+        </form>
+
+        <hr />
+
+        <ul class="list-group">
+            <li *ngFor="let project of projects"
+                class="list-group-item d-flex justify-content-between align-items-center">
+                {{ project.name }} - {{ project.description }}
+                <div>
+                    <button class="btn btn-warning btn-sm me-2" (click)="editProject(project)">Editar</button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteProject(project)">Eliminar</button>
+                </div>
+            </li>
+        </ul>
+
+        <hr />
+
+        <!-- Formulario para Tareas -->
+        <h3>Tareas</h3>
+        <form [formGroup]="taskForm" (ngSubmit)="saveTask()">
+            <input formControlName="name" placeholder="Nombre de la Tarea" class="form-control mb-2" />
+            <input formControlName="title" placeholder="Título" class="form-control mb-2" />
+            <textarea formControlName="description" placeholder="Descripción" class="form-control mb-2"></textarea>
+            <select formControlName="status" class="form-control mb-2">
+                <option value="" disabled selected>Seleccione un Estado</option>
+                <option value="pendiente">Pendiente</option>
+                <option value="en_progreso">En Progreso</option>
+                <option value="completado">Completado</option>
+            </select>
+            <input formControlName="due_date" type="date" class="form-control mb-2" />
+            <select formControlName="assigned_to" class="form-control mb-2">
+                <option value="" disabled selected>Asignar a</option>
+                <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+            </select>
+            <select formControlName="projectId" class="form-control mb-2">
+                <option value="" disabled selected>Seleccione un Proyecto</option>
+                <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
+            </select>
+
+            <button class="btn btn-primary" type="submit">{{ editingTask ? 'Actualizar' : 'Crear' }}</button>
+            <button *ngIf="editingTask" type="button" class="btn btn-secondary ms-2"
+                (click)="cancelTaskEdit()">Cancelar</button>
+        </form>
+
+        <hr />
+
+        <ul class="list-group">
+            <li *ngFor="let task of tasks" class="list-group-item d-flex justify-content-between align-items-center">
+                {{ task.name }} - Proyecto: {{ task.projectId }}
+                <div>
+                    <button class="btn btn-warning btn-sm me-2" (click)="editTask(task)">Editar</button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteTask(task)">Eliminar</button>
+                </div>
+            </li>
+        </ul>
+    </main>
+</div>
