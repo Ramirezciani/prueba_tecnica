@@ -1,0 +1,18 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fuente y fondo general */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f6f9;
+  color: #03122E;
+}
+
+/* Utilidades */
+.full-width {
+  width: 100%;
+}

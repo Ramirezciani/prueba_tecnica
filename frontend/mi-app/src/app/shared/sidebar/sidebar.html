@@ -1,0 +1,24 @@
+<nav class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 220px; height: 100vh;">
+    <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
+        <span class="fs-4">Mi App</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a routerLink="/dashboard" routerLinkActive="active" class="nav-link link-dark">
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a routerLink="/usuarios" routerLinkActive="active" class="nav-link link-dark">
+                Proyectos
+            </a>
+        </li>
+        <li>
+            <a routerLink="/configuracion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                class="nav-link link-dark">
+                Administrador
+            </a>
+        </li>
+    </ul>
+</nav>
