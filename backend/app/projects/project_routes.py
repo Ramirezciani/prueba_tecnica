@@ -1,10 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
-
-from app.projects.crud_project import (
-    create_project, get_project, get_projects, update_project, delete_project
-)
+from app.projects.crud_project import (create_project, get_project, get_projects, update_project, delete_project)
 from app.projects.project import ProjectCreate, ProjectUpdate, ProjectOut
 from app.database import get_db  # get_db debe devolver AsyncSession
 
@@ -38,3 +35,5 @@ async def delete_project_route(project_id: int, db: AsyncSession = Depends(get_d
     if not success:
         raise HTTPException(status_code=404, detail="Project not found")
     return None
+
+

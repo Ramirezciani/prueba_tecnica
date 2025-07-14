@@ -1,23 +1,23 @@
 # app/schemas/users/users.py
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from typing import Optional
 
 # Esquema para la creación de un usuario
 class UserCreate(BaseModel):
     name: str
-    email: EmailStr
+    email: str
     password: str
     role: str
 
 # Esquema para el inicio de sesión de un usuario
 class UserLogin(BaseModel):
-    email: EmailStr
+    email: str
     password: str
 
 # Esquema para la respuesta de un usuario
 class UserResponse(BaseModel):
     id: int
-    email: EmailStr
+    email: str
     role: str
 
     class Config:
@@ -26,6 +26,6 @@ class UserResponse(BaseModel):
 # Esquema para la actualización de un usuario
 class UserUpdate(BaseModel):
     name: Optional[str] = None
-    email: Optional[EmailStr] = None
+    email: Optional[str] = None
     password: Optional[str] = None
     role: Optional[str] = None

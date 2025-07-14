@@ -9,6 +9,8 @@ from app.database import AsyncSessionLocal
 from app.models import User
 from app.auth.auth_utils import hash_password 
 from app.projects.project_routes import router as project_router
+from app.task.task_routes import router as task_router
+from app.project_member.members_route import router as member_router  
 
 app = FastAPI()
 
@@ -23,7 +25,8 @@ app.add_middleware(
 app.include_router(auth_router, prefix="/auth")
 app.include_router(user_router, prefix="/users")
 app.include_router(project_router, prefix="/projects")
-
+app.include_router(task_router, prefix="/tasks")
+app.include_router(member_router, prefix="/members")  # Asegúrate de importar member_router correctamente
 @app.get("/")
 def read_root():
     return {"message": "FastAPI funcionando correctamente ✅"}
