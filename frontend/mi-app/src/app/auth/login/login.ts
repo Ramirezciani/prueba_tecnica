@@ -51,7 +51,11 @@ export class LoginComponent {
 
     this.authService.login(credentials).subscribe({
       next: (res) => {
-        this.toastService.show('Bienvenido', { classname: 'bg-success text-white', delay: 3000 });
+        const token = res.access_token; // Asegúrate de que el backend envíe el token en este campo
+        if (token) {
+          localStorage.setItem('access_token', token);
+        }
+        this.toastService.show('Bienvenido', { classname: 'bg-success text-white', delay: 2000 });
 
         setTimeout(() => {
           this.router.navigate(['/dashboard']);

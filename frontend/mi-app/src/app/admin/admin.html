@@ -7,13 +7,14 @@
         <form [formGroup]="form" (ngSubmit)="saveUser()">
             <input formControlName="name" placeholder="Nombre" class="form-control mb-2" />
             <input formControlName="email" placeholder="Email" type="email" class="form-control mb-2" />
+
             <select formControlName="role" class="form-control mb-2">
-                <option value="" disabled>Seleccione rol</option>
-                <option value="Administrador">Administrador</option>
-                <option value="Líder de Proyecto">Líder de Proyecto</option>
-                <option value="Colaborador">Colaborador</option>
+                <option value="" disabled selected>Seleccione rol</option>
+                <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
             </select>
+
             <input formControlName="password" placeholder="Contraseña" type="password" class="form-control mb-2" />
+
             <button class="btn btn-primary" type="submit">{{ editingUser ? 'Actualizar' : 'Crear' }}</button>
             <button *ngIf="editingUser" type="button" class="btn btn-secondary ms-2"
                 (click)="cancelEdit()">Cancelar</button>

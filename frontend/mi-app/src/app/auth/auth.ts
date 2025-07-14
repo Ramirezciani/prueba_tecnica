@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 interface LoginResponse {
-  token: string;
+  access_token: string;
   // otros campos que te envíe el backend
 }
 

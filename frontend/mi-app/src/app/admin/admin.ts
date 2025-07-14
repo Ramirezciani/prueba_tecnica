@@ -11,12 +11,6 @@ interface User {
   role: string;
 }
 
-const rolesMap: Record<number, string> = {
-  1: "Administrador",
-  2: "Líder de Proyecto",
-  3: "Colaborador"
-};
-
 @Component({
   selector: 'app-admin',
   standalone: true,
@@ -34,7 +28,7 @@ export class Admin implements OnInit {
   form!: FormGroup;
   editingUser: User | null = null;
 
-  readonly rolesMap = rolesMap;
+  readonly roles = ['Administrador', 'Líder de Proyecto', 'Colaborador'];
   readonly apiUrl = 'http://localhost:8000/users';
 
   constructor(
@@ -51,7 +45,7 @@ export class Admin implements OnInit {
     this.form = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      role: ['', Validators.required], // Aquí se selecciona el ID
+      role: ['', Validators.required],  // El select devuelve el valor string directo
       password: ['', Validators.required]
     });
   }
@@ -66,13 +60,7 @@ export class Admin implements OnInit {
   saveUser(): void {
     if (this.form.invalid) return;
 
-    const formValue = this.form.value;
-    const userData = {
-      name: formValue.name,
-      email: formValue.email,
-      password: formValue.password,
-      role: rolesMap[+formValue.role]  // Convertir ID a string de rol
-    };
+    const userData = this.form.value;
 
     if (this.editingUser) {
       this.http.put(`${this.apiUrl}/${this.editingUser.id}`, userData).subscribe({
@@ -96,13 +84,11 @@ export class Admin implements OnInit {
   editUser(user: User): void {
     this.editingUser = user;
 
-    const roleId = Object.entries(rolesMap).find(([id, name]) => name === user.role)?.[0] || '';
-
     this.form.patchValue({
       name: user.name,
       email: user.email,
-      role: roleId,
-      password: ''
+      role: user.role,
+      password: ''  // Nunca se precarga la contraseña
     });
   }
 
