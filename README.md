@@ -1,135 +1,109 @@
-📋 Gestor de Tareas Colaborativo
-📝 Descripción General
+
+📋 GESTOR DE TAREAS COLABORATIVO
+================================
+
+📝 DESCRIPCIÓN GENERAL
+----------------------
 Aplicación web colaborativa para la gestión de tareas dentro de proyectos. Permite a los usuarios:
+- Crear, asignar, actualizar y eliminar tareas
+- Gestionar proyectos y equipos
+- Colaborar en tiempo real
+- Visualizar tareas en formato Kanban
+- Recibir notificaciones en vivo
 
-Crear, asignar, actualizar y eliminar tareas
+🛠️ TECNOLOGÍAS UTILIZADAS
+--------------------------
+| Componente   | Tecnologías                                  |
+|--------------|-----------------------------------------------|
+| Backend     | FastAPI (Python 3.11), SQLAlchemy, AsyncPG, JWT |
+| Frontend    | Angular, Node.js                             |
+| Base de Datos | PostgreSQL 15                             |
+| Contenedores | Docker, Docker Compose                     |
 
-Gestionar proyectos y equipos
+✨ FUNCIONALIDADES PRINCIPALES
+------------------------------
+- ✅ Gestión de Usuarios — Registro, login y autenticación JWT
+- ✅ CRUD de Proyectos — Crear, leer, actualizar y eliminar proyectos
+- ✅ CRUD de Tareas — Asignación de tareas y filtros
+- ✅ Colaboración en Tiempo Real — Actualizaciones en vivo
+- ✅ Interfaz Kanban — Visualización intuitiva de tareas
+- ✅ Notificaciones — Alertas automáticas por cambios
 
-Colaborar en tiempo real
+🚀 LEVANTAMIENTO DEL ENTORNO
+----------------------------
+PRERREQUISITOS:
+- Docker (https://docs.docker.com/get-docker/)
+- Docker Compose (v2 o superior)
 
-Visualizar tareas en formato Kanban
+PASOS:
+1. Clonar el repositorio:
+   git clone https://github.com/Ramirezciani/prueba_tecnica.git
 
-Recibir notificaciones en vivo
+2. (Opcional) Crear archivo .env:
+   DATABASE_URL=postgresql+asyncpg://admin:admin@db:5432/taskdb
 
-🛠️ Tecnologías Utilizadas
-Componente	Tecnologías
-Backend	FastAPI (Python 3.11), SQLAlchemy, AsyncPG, JWT
-Frontend	Angular, Node.js
-Base de Datos	PostgreSQL 15
-Contenedores	Docker, Docker Compose
+3. Levantar los servicios:
+   docker-compose up --build
 
-✨ Funcionalidades Principales
-✅ Gestión de Usuarios — Registro, login y autenticación JWT
+🔑 USUARIO POR DEFECTO
+----------------------
+| Email             | Contraseña |
+|-------------------|-------------|
+| admin@example.cl | admin       |
 
-✅ CRUD de Proyectos — Crear, leer, actualizar y eliminar proyectos
+🌐 SERVICIOS DISPONIBLES
+------------------------
+- Frontend (Angular): http://localhost:4200
+- Backend (FastAPI): http://localhost:8000
+- Documentación API (Swagger): http://localhost:8000/docs
+- PostgreSQL: localhost:5432
 
-✅ CRUD de Tareas — Asignación de tareas y filtros
+⚙️ DETALLES TÉCNICOS
+--------------------
+BACKEND:
+- API disponible en /
+- SQLAlchemy + AsyncPG para base de datos
+- JWT para autenticación
+- Código fuente en backend/app/
+- Imagen Python 3.11-slim + Uvicorn
 
-✅ Colaboración en Tiempo Real — Actualizaciones en vivo
+FRONTEND:
+- Angular + Node.js
+- Servido con Nginx (contenedor separado)
+- Docker multietapa: build + producción
+- Puerto web: 4200
 
-✅ Interfaz Kanban — Visualización intuitiva de tareas
+BASE DE DATOS:
+- PostgreSQL 15 (contenedor oficial)
+- Volumen persistente: pgdata
+- Inicialización desde db/init.sql
+- Configuración en docker-compose.yml
 
-✅ Notificaciones — Alertas automáticas por cambios
+✅ VALIDACIÓN DE DESPLIEGUE
+---------------------------
+docker-compose ps   # Los servicios deben estar UP
 
-🚀 Levantamiento del Entorno
-Prerrequisitos
-Docker
+Acceder en navegador:
+- http://localhost:4200 — Frontend
+- http://localhost:8000 — API
+- http://localhost:8000/docs — Documentación
 
-Docker Compose (v2 o superior)
-
-Pasos para iniciar:
-bash
-Copiar
-Editar
-# 1. Clonar el repositorio
-git clone https://github.com/Ramirezciani/prueba_tecnica.git
-
-# 2. (Opcional) Crear archivo .env
-echo "DATABASE_URL=postgresql+asyncpg://admin:admin@db:5432/taskdb" > .env
-
-# 3. Levantar los servicios
-docker-compose up --build
-🔑 Usuario por Defecto
-Email	Contraseña
-admin@example.cl	admin
-
-Este usuario se crea automáticamente al iniciar los servicios.
-
-🌐 Servicios Disponibles
-Servicio	URL
-Frontend (Angular)	http://localhost:4200
-Backend (FastAPI)	http://localhost:8000
-Documentación API (Swagger)	http://localhost:8000/docs
-PostgreSQL	localhost:5432
-
-⚙️ Detalles Técnicos
-Backend
-FastAPI expone la API en /
-
-Conexión PostgreSQL via SQLAlchemy + AsyncPG
-
-Autenticación con JWT
-
-Código fuente: backend/app/
-
-Imagen basada en python:3.11-slim
-
-Servidor: Uvicorn
-
-Frontend
-Angular CLI + Node.js
-
-Servido con Nginx en contenedor separado
-
-Docker multietapa: Build + Producción
-
-Puerto web: 4200
-
-Base de Datos
-Imagen oficial PostgreSQL 15
-
-Datos persistidos en volumen pgdata
-
-Inicialización con script db/init.sql
-
-Variables de entorno definidas en docker-compose.yml
-
-✅ Validación de Despliegue
-bash
-Copiar
-Editar
-docker-compose ps
-Los servicios deben estar en estado Up
-
-Abrir en navegador:
-
-http://localhost:4200 — Frontend Angular
-
-http://localhost:8000 — API FastAPI
-
-http://localhost:8000/docs — Documentación Swagger
-
-Logs en tiempo real:
-
-bash
-Copiar
-Editar
+Ver logs en tiempo real:
 docker-compose logs -f
-🔮 Próximas Funcionalidades
-🎯 Interfaz Kanban con Drag & Drop
 
-📬 Notificaciones por Email
+🔮 PRÓXIMAS FUNCIONALIDADES
+---------------------------
+- 🎯 Interfaz Kanban con drag & drop
+- 📬 Notificaciones por email
+- 🔗 Integración con Slack / Trello
+- 🚀 Optimización de consultas
+- 🧪 Pruebas unitarias e integración
 
-🔗 Integración con Slack / Trello
+🤝 CONTRIBUCIONES
+-----------------
+Proyecto creado como prueba técnica Fullstack.
+Se aceptan sugerencias y mejoras.
 
-🚀 Optimización de consultas
-
-🧪 Pruebas unitarias y de integración
-
-🤝 Contribuciones
-Proyecto realizado como prueba técnica Fullstack.
-¡Se agradecen mejoras, sugerencias o reportes de bugs!
-
-🙌 Agradecimientos
-Gracias por revisar este proyecto. ¡Listo para continuar desarrollando juntos!
+🙌 AGRADECIMIENTOS
+-------------------
+Gracias por revisar este proyecto. ¡Listo para seguir avanzando!
