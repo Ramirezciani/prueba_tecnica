@@ -1,0 +1,35 @@
+<div class="d-flex">
+    <app-sidebar></app-sidebar>
+
+    <main class="flex-grow-1 p-3">
+        <h2>Administrar Usuarios</h2>
+
+        <form [formGroup]="form" (ngSubmit)="saveUser()">
+            <input formControlName="name" placeholder="Nombre" class="form-control mb-2" />
+            <input formControlName="email" placeholder="Email" type="email" class="form-control mb-2" />
+
+            <select formControlName="role" class="form-control mb-2">
+                <option value="" disabled selected>Seleccione rol</option>
+                <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+            </select>
+
+            <input formControlName="password" placeholder="Contraseña" type="password" class="form-control mb-2" />
+
+            <button class="btn btn-primary" type="submit">{{ editingUser ? 'Actualizar' : 'Crear' }}</button>
+            <button *ngIf="editingUser" type="button" class="btn btn-secondary ms-2"
+                (click)="cancelEdit()">Cancelar</button>
+        </form>
+
+        <hr />
+
+        <ul class="list-group">
+            <li *ngFor="let user of users" class="list-group-item d-flex justify-content-between align-items-center">
+                {{ user.name }} - {{ user.email }} - {{ user.role }}
+                <div>
+                    <button class="btn btn-warning btn-sm me-2" (click)="editUser(user)">Editar</button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteUser(user)">Eliminar</button>
+                </div>
+            </li>
+        </ul>
+    </main>
+</div>

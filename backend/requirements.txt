@@ -1,0 +1,8 @@
+fastapi                # Framework web moderno y rápido para construir APIs con Python.
+uvicorn[standard]      # Servidor ASGI ligero y rápido para ejecutar aplicaciones FastAPI.
+sqlalchemy             # ORM (Object Relational Mapper) para interactuar con bases de datos relacionales.
+asyncpg                # Cliente asíncrono de PostgreSQL para realizar consultas a la base de datos.
+python-dotenv          # Carga variables de entorno desde un archivo `.env`.
+pydantic[email]        # Validación de datos y manejo de esquemas, con soporte adicional para validación de emails.
+passlib[bcrypt]        # Biblioteca para manejar contraseñas de forma segura utilizando el algoritmo bcrypt.
+python-jose[cryptography] # Implementación de JSON Web Tokens (JWT) y criptografía para autenticación y seguridad.
