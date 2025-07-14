@@ -21,6 +21,12 @@ interface Task {
   assigned_to: number | null;
 }
 
+interface User {
+  id: number;
+  email: string;
+  role: string;
+}
+
 @Component({
   selector: 'app-projects',
   standalone: true,
@@ -36,6 +42,7 @@ interface Task {
 export class Projects implements OnInit {
   projects: Project[] = [];
   tasks: Task[] = [];
+  users: User[] = [];
   projectForm!: FormGroup;
   taskForm!: FormGroup;
   editingProject: Project | null = null;
@@ -43,6 +50,7 @@ export class Projects implements OnInit {
 
   readonly projectApiUrl = 'http://localhost:8000/projects';
   readonly taskApiUrl = 'http://localhost:8000/tasks';
+  readonly usersApiUrl = 'http://localhost:8000/users';
 
   constructor(private http: HttpClient, private fb: FormBuilder) { }
 
@@ -50,6 +58,7 @@ export class Projects implements OnInit {
     this.initForms();
     this.loadProjects();
     this.loadTasks();
+    this.loadUsers();
   }
 
   private initForms(): void {
@@ -66,6 +75,13 @@ export class Projects implements OnInit {
       status: ['', Validators.required],
       due_date: ['', Validators.required],
       assigned_to: [null, Validators.required]
+    });
+  }
+
+  private loadUsers(): void {
+    this.http.get<User[]>(this.usersApiUrl).subscribe({
+      next: (users) => (this.users = users),
+      error: (err) => console.error('Error al cargar usuarios:', err)
     });
   }
 

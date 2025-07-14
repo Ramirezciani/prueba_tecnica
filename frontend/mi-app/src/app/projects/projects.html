@@ -45,7 +45,7 @@
             <input formControlName="due_date" type="date" class="form-control mb-2" />
             <select formControlName="assigned_to" class="form-control mb-2">
                 <option value="" disabled selected>Asignar a</option>
-                <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+                <option *ngFor="let user of users" [value]="user.id">{{ user.email }} - {{ user.role }}</option>
             </select>
             <select formControlName="projectId" class="form-control mb-2">
                 <option value="" disabled selected>Seleccione un Proyecto</option>
