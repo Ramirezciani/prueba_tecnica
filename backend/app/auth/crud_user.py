@@ -1,15 +1,22 @@
 # crud_user.py
 from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.models import User
 from typing import List, Optional
+from app.models import User
+from app.auth.schemas.users.users import UserCreate, UserUpdate
+from app.auth.auth_utils import hash_password  # Asegúrate de tener esta función
 
-# Crear usuario
-async def create_user(db: AsyncSession, *, user: User) -> User:
-    db.add(user)
+async def create_user(db: AsyncSession, *, user: UserCreate) -> User:
+    db_user = User(
+        name=user.name,
+        email=user.email,
+        password_hash=hash_password(user.password),  # Hashea la contraseña antes de guardar
+        role=user.role
+    )
+    db.add(db_user)
     await db.commit()
-    await db.refresh(user)
-    return user
+    await db.refresh(db_user)
+    return db_user
 
 # Obtener usuario por ID
 async def get_user(db: AsyncSession, user_id: int) -> Optional[User]:
