@@ -38,11 +38,14 @@ PRERREQUISITOS:
 PASOS:
 1. Clonar el repositorio:
    git clone https://github.com/Ramirezciani/prueba_tecnica.git
+   
+2. Avanzar al proyecto 
+   cd prueba_tecnica
 
-2. (Opcional) Crear archivo .env:
+3. Crear archivo .env:
    DATABASE_URL=postgresql+asyncpg://admin:admin@db:5432/taskdb
 
-3. Levantar los servicios:
+4. Levantar los servicios:
    docker-compose up --build
 
 🔑 USUARIO POR DEFECTO
